@@ -1,6 +1,6 @@
 """
-Agoda Reviews - Interactive Sentiment Dashboard
----------------------------------------------------
+Sri Lanka Hotel Booking App Review Sentiment Analysis - Dashboard
+---------------------------------------------------------------------
 Streamlit dashboard to visualize sentiment analysis results.
 
 Install requirements first:
@@ -14,7 +14,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="Agoda Review Sentiment Dashboard", layout="wide")
+st.set_page_config(page_title="Hotel Review Sentiment Dashboard", layout="wide")
 
 # ---------- Load data ----------
 @st.cache_data
@@ -26,8 +26,8 @@ def load_data():
 df = load_data()
 
 # ---------- Header ----------
-st.title("🏨 Agoda Hotel Review Sentiment Analysis")
-st.markdown("Sentiment analysis of Agoda app reviews from the Sri Lanka Google Play Store, powered by DistilBERT (Hugging Face Transformers).")
+st.title("🏨 Sri Lanka Hotel Booking App Review Sentiment Analysis")
+st.markdown("Sentiment analysis of a hotel booking app's reviews from the Sri Lanka Google Play Store, powered by DistilBERT (Hugging Face Transformers).")
 
 # ---------- Key metrics ----------
 total_reviews = len(df)
@@ -37,17 +37,32 @@ positive_pct = round(positive_count / total_reviews * 100, 1)
 negative_pct = round(negative_count / total_reviews * 100, 1)
 avg_rating = round(df['rating'].mean(), 2)
 
+st.subheader("📊 Key Metrics Overview")
+st.caption("A quick snapshot of overall customer sentiment based on the cleaned review dataset.")
+
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Total Reviews", f"{total_reviews:,}")
-col2.metric("Positive %", f"{positive_pct}%")
-col3.metric("Negative %", f"{negative_pct}%")
-col4.metric("Average Rating", f"{avg_rating} ⭐")
+col1.metric(
+    "Total Reviews", f"{total_reviews:,}",
+    help="Number of cleaned reviews analyzed after removing duplicates and blank entries"
+)
+col2.metric(
+    "Positive %", f"{positive_pct}%",
+    help="Percentage of reviews classified as POSITIVE by the DistilBERT sentiment model"
+)
+col3.metric(
+    "Negative %", f"{negative_pct}%",
+    help="Percentage of reviews classified as NEGATIVE by the DistilBERT sentiment model"
+)
+col4.metric(
+    "Average Rating", f"{avg_rating} ⭐",
+    help="Average star rating (out of 5) across all analyzed reviews"
+)
 
 st.divider()
 
 # ---------- Charts row 1 ----------
 c1, c2 = st.columns(2)
- 
+
 with c1:
     st.subheader("Sentiment Distribution")
     sentiment_counts = df['sentiment'].value_counts().reset_index()
