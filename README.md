@@ -2,15 +2,13 @@
 
 An end-to-end NLP sentiment analysis pipeline and interactive dashboard, built from real hotel booking app reviews on the Sri Lanka Google Play Store.
 
-
-
 ---
 
 ##  Overview
 
 This project scrapes, cleans, analyzes, and visualizes ~2,000 customer reviews of a popular hotel booking app to uncover overall customer sentiment, key pain points, and trends over time — using a fully automated Python pipeline, powered by a pre-trained Transformer model (DistilBERT).
 
-**Live Dashboard:** (https://sl-hotel-review-sentiment.streamlit.app/)
+**Live Dashboard:** [https://sl-hotel-review-sentiment.streamlit.app/](https://sl-hotel-review-sentiment.streamlit.app/)
 
 ---
 
@@ -41,10 +39,6 @@ Scrapes reviews directly from the Google Play Store using the `google-play-scrap
 - A 1-second delay between requests to avoid overloading Google's servers
 - Output: `agoda_reviews_raw.csv`
 
-```bash
-python scraper.py
-```
-
 ### 2️. Data Cleaning
 **Script:** `cleaning.py`
 
@@ -61,10 +55,6 @@ Raw scraped data is noisy — this step prepares it for reliable analysis.
 
 Output: `agoda_reviews_clean.csv`
 
-```bash
-python cleaning.py
-```
-
 ### 3️. Sentiment Analysis
 **Script:** `sentiment_analysis.py`
 
@@ -77,10 +67,6 @@ Each cleaned review is passed through a pre-trained **DistilBERT** model to clas
 
 Output: `agoda_reviews_with_sentiment.csv`
 
-```bash
-python sentiment_analysis.py
-```
-
 ### 4️. Interactive Dashboard
 **Script:** `dashboard.py`
 
@@ -92,12 +78,8 @@ An interactive web dashboard built with **Streamlit** and **Plotly**, featuring:
 - Sentiment trend over time (line chart)
 - Filterable, searchable review explorer table
 
-```bash
-streamlit run dashboard.py
-```
-
 ### 5️. Deployment
-**Live on:** Streamlit Community Cloud
+**Live on:** [Streamlit Community Cloud](https://sl-hotel-review-sentiment.streamlit.app/)
 
 The dashboard is deployed for free, public access using [Streamlit Community Cloud](https://streamlit.io/cloud):
 
@@ -133,35 +115,44 @@ Note: the heavier ML dependencies (`torch`, `transformers`) are **not** required
 
 ##  Repository Structure
 
-```
 sri-lanka-hotel-review-sentiment-analysis/
-├── scraper.py                          # Step 1: Data collection
-├── cleaning.py                         # Step 2: Data cleaning
-├── sentiment_analysis.py               # Step 3: Sentiment inference
-├── dashboard.py                        # Step 4: Streamlit dashboard
-├── requirements.txt                    # Dependencies for deployment
-├── agoda_reviews_raw.csv               # Raw scraped data
-├── agoda_reviews_clean.csv             # Cleaned data
-├── agoda_reviews_with_sentiment.csv    # Final data with sentiment labels
-└── README.md
-```
+- scraper.py — Step 1: Data collection
+- cleaning.py — Step 2: Data cleaning
+- sentiment_analysis.py — Step 3: Sentiment inference
+- dashboard.py — Step 4: Streamlit dashboard
+- requirements.txt — Dependencies for deployment
+- agoda_reviews_raw.csv — Raw scraped data
+- agoda_reviews_clean.csv — Cleaned data
+- agoda_reviews_with_sentiment.csv — Final data with sentiment labels
+- README.md
 
 ---
 
-# 1. Clone the repository
+## Run This Project Locally
+
+**1. Clone the repository**
+
 git clone https://github.com/parindi2003/sri-lanka-hotel-review-sentiment-analysis.git
+
 cd sri-lanka-hotel-review-sentiment-analysis
 
-# 2. Install dependencies
+**2. Install dependencies**
+
 pip install google-play-scraper pandas transformers torch streamlit plotly
 
-# 3. Run the full pipeline, in order
+**3. Run the full pipeline, in order**
+
 python scraper.py
+
 python cleaning.py
+
 python sentiment_analysis.py
 
-# 4. Launch the dashboard
+**4. Launch the dashboard**
+
 streamlit run dashboard.py
+
+---
 
 ##  Future Improvements
 
@@ -169,13 +160,16 @@ streamlit run dashboard.py
 - Topic/reason classification to identify *why* a review is negative — planned as **Project 3** in this NLP series
 - Compare sentiment across multiple hotel booking apps
 
-Links
-Live Dashboard: https://sl-hotel-review-sentiment.streamlit.app/
-GitHub Repository: https://github.com/parindi2003/sri-lanka-hotel-review-sentiment-analysis
+---
+
+##  Links
+
+- **Live Dashboard:** [https://sl-hotel-review-sentiment.streamlit.app/](https://sl-hotel-review-sentiment.streamlit.app/)
+- **GitHub Repository:** [https://github.com/parindi2003/sri-lanka-hotel-review-sentiment-analysis](https://github.com/parindi2003/sri-lanka-hotel-review-sentiment-analysis)
 
 ---
 
-##  Disclaimer
+## Disclaimer
 
 This is an independent portfolio project created for educational purposes. It is not affiliated with, endorsed by, or sponsored by any hotel booking platform. All data was sourced from publicly available Google Play Store reviews.
 
